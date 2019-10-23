@@ -4,9 +4,12 @@
 #define FALSE 0
 
 int counter;
+int pointer=-1;
+char stack[MAXLENGTH];
+void push(char val);
+char pop();
 int getstr(char str[]);
 int checkstr(char str[], int len);
-int check(char str[], char tgt, int len);
 int main()
 {
     char str[MAXLENGTH];
@@ -39,32 +42,36 @@ int getstr(char str[])
     str[i]='\0';
     return i;
 }
+void push(char val)
+{
+    if(pointer<MAXLENGTH)
+    {
+       stack[++pointer]=val;
+    }
+    else;
+}
+char pop()
+{
+    if(pointer>-1)
+    {
+        return stack[pointer--];
+    }
+    else return -1;
+}
 int checkstr(char str[], int len)
 {
+    char c;
     counter = 0;
-    char c;
     while(counter<len)
     {
         c=str[counter++];
         if(c=='(' || c=='[' || c=='{' || c=='<')
         {
-            if(check(str, c, len)==FALSE)return FALSE;
+            push(c);
         }
-    }
-    return TRUE;
-}
-int check(char str[], char tgt, int len)
-{
-    char c;
-    while(counter<len)
-    {
-        c=str[counter++];
-        if(c=='(' || c=='[' || c=='{' || c=='<')
+        if(c==')' || c==']' || c=='}' || c=='>')
         {
-             return check(str, c, len);
-        }
-        else if(c==')' || c==']' || c=='}' || c=='>')
-        {
+            if(pointer<0)return FALSE;
             switch(c)
             {
                 case ')': c-=1;
@@ -75,8 +82,9 @@ int check(char str[], char tgt, int len)
                 break;
                 case '>': c-=2;
             }
+            //char tgt=pop();
+            printf("%d",pop() == c);
         }
-        return tgt==c;
     }
-    //return FALSE;
+    return TRUE;
 }
