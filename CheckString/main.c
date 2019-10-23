@@ -4,15 +4,16 @@
 #define FALSE 0
 
 int counter;
-getstr(char str[]);
-checkstr(char str[]);
-
+int getstr(char str[]);
+int checkstr(char str[], int len);
+int check(char str[], char tgt, int len);
 int main()
 {
     char str[MAXLENGTH];
     int len;
     len = getstr(str);
-    printf("%s", str);
+    printf("%slength: %d\n", str, len);
+    printf("%s",checkstr(str, len)?"TRUE":"FALSE");
     return 0;
 }
 
@@ -34,7 +35,48 @@ int getstr(char str[])
             flag = TRUE;
         }
     }
-    if(c=="\n")str[i++]=c;
+    if(c=='\n')str[i++]=c;
     str[i]='\0';
     return i;
+}
+int checkstr(char str[], int len)
+{
+    counter = 0;
+    char c;
+    while(counter<len)
+    {
+        c=str[counter++];
+        if(c=='(' || c=='[' || c=='{' || c=='<')
+        {
+            if(check(str, c, len)==FALSE)return FALSE;
+        }
+    }
+    return TRUE;
+}
+int check(char str[], char tgt, int len)
+{
+    char c;
+    while(counter<len)
+    {
+        c=str[counter++];
+        if(c=='(' || c=='[' || c=='{' || c=='<')
+        {
+             return check(str, c, len);
+        }
+        else if(c==')' || c==']' || c=='}' || c=='>')
+        {
+            switch(c)
+            {
+                case ')': c-=1;
+                break;
+                case ']': c-=2;
+                break;
+                case '}': c-=2;
+                break;
+                case '>': c-=2;
+            }
+        }
+        return tgt==c;
+    }
+    //return FALSE;
 }
