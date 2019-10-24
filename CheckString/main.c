@@ -61,6 +61,7 @@ char pop()
 int checkstr(char str[], int len)
 {
     char c;
+    int status=TRUE;
     counter = 0;
     while(counter<len)
     {
@@ -82,9 +83,9 @@ int checkstr(char str[], int len)
                 break;
                 case '>': c-=2;
             }
-            //char tgt=pop();
-            printf("%d",pop() == c);
+            status = (pop() == c);
         }
     }
-    return TRUE;
+    //printf("%d", status);
+    return status;
 }
