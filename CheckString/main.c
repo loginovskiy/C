@@ -87,5 +87,5 @@ int checkstr(char str[], int len)
         }
     }
     //printf("%d", status);
-    return status;
+    return sus;
 }
