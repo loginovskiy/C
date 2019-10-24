@@ -86,6 +86,5 @@ int checkstr(char str[], int len)
             status = (pop() == c);
         }
     }
-    //printf("%d", status);
     return status;
 }
