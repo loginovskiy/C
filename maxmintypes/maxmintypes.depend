@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1571993609 source:c:\users\v.loginovskiy\documents\github\c\maxmintypes\main.c
+	<stdio.h>
+	<limits.h>
+	<stdlib.h>
+
