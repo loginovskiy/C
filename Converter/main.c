@@ -14,7 +14,7 @@ int convert(char string[])
 {
     int i,n;
     n=0;
-    for(i=0; (string[i]>='0' && string[i]<='9') || (string[i]>='A' && string[i]<='F'); i++)
+    for(i=0; isdigit(string[i]) || (string[i]>='A' && string[i]<='F'); i++)       //(string[i]>='0' && string[i]<='9')
     {
         n=16*n+(string[i]<'9'?string[i]-'0':10+(string[i]-'A'));
     }
