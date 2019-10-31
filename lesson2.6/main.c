@@ -1,15 +1,33 @@
 #include <stdio.h>
-#include <ctype.h>
-#define POSITION 3
-int getbits(int num, int p, int n);
+#include <stdlib.h>
+
+//setbits(int num, int p, int n, int exmpl);
+void showbinary(int val);
 int main()
 {
-    int num = 00011010;
-    int res = getbits(num, POSITION, 3);
-    printf("%d", res);
+    int num = 115;
+    int exmpl = 110;
+    showbinary(num);
+    showbinary(exmpl);
+
+    //setbits(num, 3, 5, exmpl);
     return 0;
 }
-int getbits(int num, int p, int n)
+
+//setbits(int num, int p, int n, int exmpl)
+//{
+
+//}
+
+void showbinary(int val)
 {
-    return (num >> (p+1-n)) & ~(~0 << n);
+    int mask=1;
+    mask<<=6;
+    for(int i=0; i<7; i++)
+    {
+        if((val & mask) == 0)printf("0");
+        else printf("1");
+        mask>>=1;
+    }
+    printf("\n");
 }
