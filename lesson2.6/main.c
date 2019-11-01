@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-//setbits(int num, int p, int n, int exmpl);
+getbits(int x, int p, int n);
+setbits(int num, int p, int n, int exmpl);
+chengebits(int val, int exmpl);
 void showbinary(int val);
 int main()
 {
@@ -9,16 +10,22 @@ int main()
     int exmpl = 110;
     showbinary(num);
     showbinary(exmpl);
-
-    //setbits(num, 3, 5, exmpl);
+    showbinary(setbits(num, 5, 3, exmpl));
     return 0;
 }
+getbits(int val, int p, int n)
+{
+    int temp = (val>>(p+1-n) & ~(~0 << n));
 
-//setbits(int num, int p, int n, int exmpl)
-//{
-
-//}
-
+    return temp;
+}
+setbits(int num, int p, int n, int exmpl)
+{
+    int temp;
+    temp = (getbits(exmpl, 3, 3))<<(p+1-n);
+    showbinary(temp);
+    return changebits(num,temp);
+}
 void showbinary(int val)
 {
     int mask=1;
@@ -30,4 +37,8 @@ void showbinary(int val)
         mask>>=1;
     }
     printf("\n");
+}
+changebits(int val, int exmpl)
+{
+    return val |= exmpl;
 }
