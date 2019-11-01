@@ -6,7 +6,7 @@ chengebits(int val, int exmpl);
 void showbinary(int val);
 int main()
 {
-    int num = 115;
+    int num = 1;
     int exmpl = 110;
     showbinary(num);
     showbinary(exmpl);
@@ -15,9 +15,7 @@ int main()
 }
 getbits(int val, int p, int n)
 {
-    int temp = (val>>(p+1-n) & ~(~0 << n));
-
-    return temp;
+    return (val>>(p+1-n) & ~(~0 << n));
 }
 setbits(int num, int p, int n, int exmpl)
 {
