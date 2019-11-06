@@ -11,10 +11,8 @@ int main()
 {
     int val = 11;
     showbinary(val);
-    int *pointer = &val;
-    moveright(pointer, 2);
+    move(&val, 2);
     showbinary(val);
-    printf()
     return 0;
 }
 
@@ -28,7 +26,7 @@ int getright(int *val)
 }
 int getleft(int *val)
 {
-    return *val;
+    return *val & ~0 << 7;
 }
 void moveright(int *val, int num)
 {
@@ -37,13 +35,18 @@ void moveright(int *val, int num)
     {
         temp = getright(val)!=0?(getright(val))<<7:0;
         *val>>=1;
-        if(val!=0)*val |= temp;
+        if(temp!=0)*val |= temp;
     }
 }
 void moveleft(int *val, int num)
 {
     int temp;
-    temp = getleft(val);
+    for(int i=0; i<num; i++)
+    {
+        temp = getleft(val)!=0?(getleft(val))>>7:0;
+        *val<<=1;
+        if(temp!=0)*val |=temp;
+    }
 }
 void showbinary(int val)
 {
