@@ -5,7 +5,7 @@ void showbinary(int val);
 int hitcount(unsigned int x);
 int main()
 {
-    unsigned int num = 11;
+    unsigned int num = 31;
     showbinary(num);
     printf("%d",hitcount(num));
     return 0;
@@ -17,6 +17,7 @@ int hitcount(unsigned int x)
     while(x != 0)
     {
         if(x &= (x-1));
+        showbinary(x);
         b++;
     }
     return b;
