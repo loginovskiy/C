@@ -4,7 +4,7 @@
 int binarysearch(int val, int array[]);
 int main()
 {
-    int num = 4;
+    int num = 10;
     int arr[] = {2,3,4,10,11,12,15};
     printf("%d", binarysearch(num,arr));
     return 0;
@@ -13,8 +13,8 @@ int binarysearch(int val, int array[])
 {
     int low, middle, high;
     low=0;
-    printf("%d", sizeof(array));
     high = sizeof(array)-1;
+    printf("%d", high );
     while(low<high)
     {
         middle = (low+high)/2;
