@@ -4,18 +4,16 @@
 #define TRUE 1
 #define FALSE 0
 #define QSIZE 3
-
 int checkpattern(char str[]);
 void extract(char str[], char dest[]);
-
 int main()
 {
-    char str[] = {'a','-','c','1','-','4','A','-','C','\0'};
+    char str[] = {'a','-','g','1','-','4','A','-','J','\0'};
     char trgt[100];
-    printf("%s %s", str, checkpattern(str)?"TRUE":"FALSE");
+    extract(str, trgt);
+    printf("%s", trgt);
     return 0;
 }
-
 int checkpattern(char str[])
 {
     int counter = 0;
@@ -29,17 +27,19 @@ int checkpattern(char str[])
     }
     return TRUE;
 }
-
 void extract(char str[], char dest[])
 {
-    char arr[2];
-    int k;
+    if(!checkpattern(str))return;
+    int k=0;
     for(int i = 0; str[i] !='\0'; i++)
     {
-
-        for(int temp=arr[0], k=0; temp<arr[2]; temp++, k++)
+        if(str[i] == '-')
         {
-            dest[k]=temp;
+            for(int temp=str[i-1]; temp<=str[i+1]; temp++, k++)
+            {
+                dest[k]=temp;
+            }
         }
     }
+    dest[k] ='\0';
 }
