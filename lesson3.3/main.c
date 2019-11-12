@@ -3,7 +3,6 @@
 #include <ctype.h>
 #define TRUE 1
 #define FALSE 0
-#define QSIZE 3
 int checkpattern(char str[]);
 void extract(char str[], char dest[]);
 int main()
