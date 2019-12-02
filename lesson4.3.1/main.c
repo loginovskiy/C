@@ -19,7 +19,7 @@ int tp = 0;
 int getchiter = 0;
 int main()
 {
-    char str[] = {'2', ' ', '2', ' ', '+', ' ', '1', ' ', '-', '\n'};
+    char str[] = {'2', ' ', '2', ' ', '+', ' ', '1', ' ', '-', '\0'};
     char c;
     int t;
     while((c=getop(str)) !='\0')
@@ -41,10 +41,14 @@ int main()
                 t = pop();
                 push (pop()/t);
                 break;
-            case '\n':
-                printf(".8f", pop());
+            case 'c':
+                continue;
+            default:
+                printf("Wrong enter");
+                return -1;
         }
     }
+    printf("%.4f", pop());
     return 0;
 }
 void push(double val)
@@ -64,17 +68,23 @@ void cleartemp()
 int getop(char string[])
 {
     char c;
-    while((c=getch(string))!=' ')
+    while(isdigit(c=getch(string)))
     {
         temp[tp++] = c;
     }
-    if(!isdigit(c) && c!=' ')ungetch();
-    if(c==' ')return '0';
-    else
+    if(c==' ')
     {
-        //ungetch();
+        if(isdigit(string[getchiter-2]))
+        {
+           return '0';
+        }
+        else return 'c';
+    }
+    else if(c=='+' || c=='-' || c=='*' || c=='/')
+    {
         return c;
     }
+    else if(c=='\0')return c;
 }
 char getch(char str[])
 {
@@ -82,5 +92,5 @@ char getch(char str[])
 }
 void ungetch()
 {
-    tp++;
+    getchiter++;
 }
